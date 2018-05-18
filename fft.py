@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+import numpy as np
+import matplotlib.pyplot as plt
+import time
+
+if __name__ == '__main__':
+    N = int(input("サンプリング点数:"))
+    t = np.arange(0, N)
+    waves = []
+    spectrums = []
+    exec_time = []
+    # wave 1
+    waves.append(np.sin(2*np.pi*t*10/N))
+    # wave 2
+    waves.append(np.sin(2*np.pi*t/N) + np.sin(2*np.pi*t*10/N))
+    # wave 3
+    waves.append(np.sin(2*np.pi*t/N) + np.sin(2*np.pi*t*10/N) + np.sin(2*np.pi*t*20/N)/5)
+
+    # Discrete Cosine Transform
+    for w in waves:
+        start = time.perf_counter()
+        spectrums.append(np.abs(np.fft.fft(w))**2)
+        end = time.perf_counter()
+        exec_time.append(end - start)
+
+    print("実行時間")
+    for i, et in enumerate(exec_time):
+        print("wave" + str(i) + " : " + str(et) + "[sec]")
+
+    plt.subplot(121)
+    plt.title("waves")
+    for i,w in enumerate(waves):
+        plt.plot(t, w, label="wave"+str(i), linewidth=len(waves)-i)
+    plt.legend()
+
+    plt.subplot(122)
+    plt.title("spectrums")
+    for i,s in enumerate(spectrums):
+        plt.plot(t, s, label="spectrum"+str(i), linewidth=len(spectrums)-i)
+
+    plt.legend()
+    plt.show()
