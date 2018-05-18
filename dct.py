@@ -31,9 +31,9 @@ if __name__ == '__main__':
 
     # Discrete Cosine Transform
     for w in waves:
-        start = time.time()
+        start = time.perf_counter()
         spectrums.append(np.abs(dct(w, N))**2)
-        end = time.time()
+        end = time.perf_counter()
         exec_time.append(end - start)
 
     print("実行時間")
