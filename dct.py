@@ -21,6 +21,7 @@ if __name__ == '__main__':
     t = np.arange(0, N)
     waves = []
     spectrums = []
+    exec_time = []
     # wave 1
     waves.append(np.sin(2*np.pi*t*10/N))
     # wave 2
@@ -29,12 +30,15 @@ if __name__ == '__main__':
     waves.append(np.sin(2*np.pi*t/N) + np.sin(2*np.pi*t*10/N) + np.sin(2*np.pi*t*20/N)/5)
 
     # Discrete Cosine Transform
-    start = time.time()
     for w in waves:
+        start = time.time()
         spectrums.append(np.abs(dct(w, N))**2)
-    end = time.time()
+        end = time.time()
+        exec_time.append(end - start)
 
-    print("実行時間 : " + str(end - start) + "[sec]")
+    print("実行時間")
+    for i, et in enumerate(exec_time):
+        print("wave" + str(i) + " : " + str(et) + "[sec]")
 
     plt.subplot(121)
     plt.title("waves")
