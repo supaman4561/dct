@@ -26,11 +26,30 @@ $$
 
 **離散フーリエ変換**
 
-$k$ : 周波数  
-$n$ : 離散的な時間  
+$k$ : 周波数    
+$N$ : サンプリング点数
 $$
 X_{k}=\sum_{n=0}^{N-1}x_{n}e^{\frac{-2\pi ikn}{N}}
 $$
 $$
-x_{n}=\frac{1}{N}\sum_{k=0}^{N-1}X_{k}e^{frac{+2\pi ikn}{N}}
+x_{n}=\frac{1}{N}\sum_{k=0}^{N-1}X_{k}e^{\frac{+2\pi ikn}{N}}
 $$
+
+## 演習 ~DCT~
+
+* DCTを実装し、結果をグラフ表示
+* DCTへ以下の波形を与え、それぞれのスペクトルを確認
+  1. $\sin(\frac{2\pi t}{N} \cdot 10)$
+  2. $\sin(\frac{2\pi t}{N})+\sin(\frac{2\pi t}{N} \cdot 10)$
+  3. $\sin(\frac{2\pi t}{N})+\sin(\frac{2\pi t}{N} \cdot 10)+\frac{1}{5} \sin(\frac{2\pi t}{N} \cdot 20)$
+* N=128, N=1024, N=2048についてそれぞれ試す
+* 計算時間をチェックする
+
+## 演習 ~FFT~
+
+* FFTへ以下の波形を与え、それぞれのスペクトルを確認
+  1. $\sin(\frac{2\pi t}{N} \cdot 10)$
+  2. $\sin(\frac{2\pi t}{N})+\sin(\frac{2\pi t}{N} \cdot 10)$
+  3. $\sin(\frac{2\pi t}{N})+\sin(\frac{2\pi t}{N} \cdot 10)+\frac{1}{5} \sin(\frac{2\pi t}{N} \cdot 20)$
+* N=128, N=1024, N=2048についてそれぞれ試す
+* DCTとの計算時間の違いを測定(N=2048)
